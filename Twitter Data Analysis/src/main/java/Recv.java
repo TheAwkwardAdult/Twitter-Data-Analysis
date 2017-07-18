@@ -8,7 +8,7 @@ import com.rabbitmq.client.QueueingConsumer;
 
 public class Recv 
 {
- private final static String QUEUE_NAME = "jsonExample4";
+ private final static String QUEUE_NAME = "json-apple";
  private ConnectionFactory factory = null;
  final private JSONParser parser;
  
@@ -20,14 +20,14 @@ public class Recv
  public void run () throws Exception
  {
   factory = new ConnectionFactory();
-     factory.setHost("192.168.1.34");
+     factory.setHost("localhost");
      factory.setPort(5672);
       factory.setUsername("farheen"); 
       factory.setPassword("farheen786");
      Connection connection = factory.newConnection();
      Channel channel = connection.createChannel();
 
-     channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+     channel.queueDeclare(QUEUE_NAME, true, false, false, null);
      System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
      
      QueueingConsumer consumer = new QueueingConsumer(channel);

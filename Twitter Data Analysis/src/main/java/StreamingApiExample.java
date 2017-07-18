@@ -40,7 +40,7 @@ public class StreamingApiExample {
     HashSet<String> Geoboxes;
     HashSet<String> Userids;
     final String CONFIG_FILE_PATH = "/home/farheen/NetBeansProjects/TwitterDataAnalysisProject/src/main/java/streamingapi/searchKeywords.txt";
-    final String DEF_OUTPATH = "/home/farheen/NetBeansProjects/TwitterDataAnalysisProject/src/main/java/streamingapi/";
+    //final String DEF_OUTPATH = "/home/farheen/NetBeansProjects/TwitterDataAnalysisProject/src/main/java/streamingapi/";
     /**
      * Loads the Twitter access token and secret for a user
      */
@@ -117,7 +117,9 @@ public class StreamingApiExample {
                     JSONObject temp = new JSONObject(jsonTokener);
                     test.run(temp);
                     System.out.println("Tweet" + temp);
-                    System.out.println("Written "+nooftweetsuploaded+" records so far");
+                    nooftweetsuploaded++;
+                    System.out.println("Number of tweets till now: "+ nooftweetsuploaded);
+                    
                     
                 } catch (JSONException ex) {
                     ex.printStackTrace();
@@ -133,7 +135,7 @@ public class StreamingApiExample {
         sae.LoadTwitterToken();
         //load parameters from a TSV file
         String filename = sae.CONFIG_FILE_PATH;
-        String outfilepath = sae.DEF_OUTPATH;
+        //String outfilepath = sae.DEF_OUTPATH;
         sae.readParameters(filename);
         sae.createStreamingConnection("https://stream.twitter.com/1.1/statuses/filter.json");
     }
